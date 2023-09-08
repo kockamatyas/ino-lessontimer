@@ -9,4 +9,6 @@ struct ClockTime
     unsigned long ms;
 };
 
+ClockTime msToClockTime(unsigned long ms);
+
 #endif
