@@ -3,10 +3,10 @@
 
 struct ClockTime
 {
-    int hours;
-    int mins;
-    int secs;
-    int ms;
+    unsigned long hours;
+    unsigned long mins;
+    unsigned long secs;
+    unsigned long ms;
 };
 
 #endif
