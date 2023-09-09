@@ -7,7 +7,8 @@
 
 TM1637Display display(DISPLAY_CLK, DISPLAY_DIO);
 
-void displayClockTime(ClockTime ct, bool colon) {
+void displayClockTime(ClockTime ct, bool colon)
+{
     uint8_t segments[4];
     if (ct.hours > 0)
     {
@@ -30,11 +31,13 @@ void displayClockTime(ClockTime ct, bool colon) {
         segments[2] = (uint8_t)ct.ms / 10;
         segments[3] = (uint8_t)ct.ms % 10;
     }
-    if (colon) segments[1] += 128;
+    if (colon)
+        segments[1] += 128;
     display.setSegments(segments);
 }
 
-void setup() {
+void setup()
+{
     display.setBrightness(DISPLAY_BRIGHTNESS);
 }
 void loop() {}

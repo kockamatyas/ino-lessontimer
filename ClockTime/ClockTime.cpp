@@ -1,6 +1,7 @@
 #include "ClockTime.hpp"
 
-ClockTime msToClockTime(unsigned long ms) {
+ClockTime msToClockTime(unsigned long ms)
+{
     ClockTime result;
     result.ms = ms;
     result.secs = result.ms / 1000;
