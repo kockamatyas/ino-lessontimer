@@ -5,7 +5,8 @@ enum ScheduleSegmentType : unsigned char
 {
     Lesson,
     Break,
-    LongBreak
+    LongBreak,
+    None
 };
 
 struct ScheduleSegment
