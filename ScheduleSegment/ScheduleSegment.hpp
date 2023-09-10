@@ -15,4 +15,6 @@ struct ScheduleSegment
     unsigned long length;
 };
 
+ScheduleSegment mkScheduleSegment(enum ScheduleSegmentType type, unsigned long length);
+
 #endif
