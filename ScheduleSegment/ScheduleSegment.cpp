@@ -1,9 +1,9 @@
 #include "ScheduleSegment.hpp"
 
-ScheduleSegment mkScheduleSegment(enum ScheduleSegmentType type, unsigned long length)
+ScheduleSegment mkScheduleSegment(enum ScheduleSegmentType type, unsigned long duration_ms)
 {
     ScheduleSegment result;
     result.type = type;
-    result.length = length;
+    result.duration_ms = duration_ms;
     return result;
 }

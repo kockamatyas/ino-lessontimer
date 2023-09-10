@@ -12,9 +12,9 @@ enum ScheduleSegmentType : unsigned char
 struct ScheduleSegment
 {
     enum ScheduleSegmentType type;
-    unsigned long length;
+    unsigned long duration_ms;
 };
 
-ScheduleSegment mkScheduleSegment(enum ScheduleSegmentType type, unsigned long length);
+ScheduleSegment mkScheduleSegment(enum ScheduleSegmentType type, unsigned long duration_ms);
 
 #endif
