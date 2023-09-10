@@ -1,14 +1,16 @@
 #ifndef SCHEDULE_SEGMENT_H
 #define SCHEDULE_SEGMENT_H
 
+enum ScheduleSegmentType : unsigned char
+{
+    Lesson,
+    Break,
+    LongBreak
+};
+
 struct ScheduleSegment
 {
-    enum type : unsigned char
-    {
-        Lesson,
-        Break,
-        LongBreak
-    };
+    enum ScheduleSegmentType type;
     unsigned long length;
 };
 
