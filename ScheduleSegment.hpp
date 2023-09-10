@@ -1,5 +1,5 @@
-#ifndef SCHEDULE_H
-#define SCHEDULE_H
+#ifndef SCHEDULE_SEGMENT_H
+#define SCHEDULE_SEGMENT_H
 
 struct ScheduleSegment
 {
