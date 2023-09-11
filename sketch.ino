@@ -28,8 +28,8 @@ void displayClockTime(ClockTime ct, bool colon)
     {
         segments[0] = (uint8_t)ct.secs / 10;
         segments[1] = (uint8_t)ct.secs % 10;
-        segments[2] = (uint8_t)ct.ms / 10;
-        segments[3] = (uint8_t)ct.ms % 10;
+        segments[2] = (uint8_t)ct.ms / 100;
+        segments[3] = (uint8_t)ct.ms % 100;
     }
     if (colon)
         segments[1] += 128;
