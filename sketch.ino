@@ -12,24 +12,24 @@ void displayClockTime(ClockTime ct, bool colon)
     uint8_t segments[4];
     if (ct.hours > 0)
     {
-        segments[0] = (uint8_t)ct.hours / 10;
-        segments[1] = (uint8_t)ct.hours % 10;
-        segments[2] = (uint8_t)ct.mins / 10;
-        segments[3] = (uint8_t)ct.mins % 10;
+        segments[0] = TM1637Display::encodeDigit((uint8_t)ct.hours / 10);
+        segments[1] = TM1637Display::encodeDigit((uint8_t)ct.hours % 10);
+        segments[2] = TM1637Display::encodeDigit((uint8_t)ct.mins / 10);
+        segments[3] = TM1637Display::encodeDigit((uint8_t)ct.mins % 10);
     }
     else if (ct.mins > 0)
     {
-        segments[0] = (uint8_t)ct.mins / 10;
-        segments[1] = (uint8_t)ct.mins % 10;
-        segments[2] = (uint8_t)ct.secs / 10;
-        segments[3] = (uint8_t)ct.secs % 10;
+        segments[0] = TM1637Display::encodeDigit((uint8_t)ct.mins / 10);
+        segments[1] = TM1637Display::encodeDigit((uint8_t)ct.mins % 10);
+        segments[2] = TM1637Display::encodeDigit((uint8_t)ct.secs / 10);
+        segments[3] = TM1637Display::encodeDigit((uint8_t)ct.secs % 10);
     }
     else
     {
-        segments[0] = (uint8_t)ct.secs / 10;
-        segments[1] = (uint8_t)ct.secs % 10;
-        segments[2] = (uint8_t)ct.ms / 100;
-        segments[3] = (uint8_t)ct.ms % 100;
+        segments[0] = TM1637Display::encodeDigit((uint8_t)ct.secs / 10);
+        segments[1] = TM1637Display::encodeDigit((uint8_t)ct.secs % 10);
+        segments[2] = TM1637Display::encodeDigit((uint8_t)ct.ms / 100);
+        segments[3] = TM1637Display::encodeDigit((uint8_t)ct.ms % 100);
     }
     if (colon)
         segments[1] += 128;
