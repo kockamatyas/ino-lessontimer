@@ -1,5 +1,5 @@
 #include "TM1637Display.h"
-#include "ClockTime/ClockTime.hpp"
+#include "ClockTime.hpp"
 
 #define DISPLAY_CLK 2
 #define DISPLAY_DIO 3
