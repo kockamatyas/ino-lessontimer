@@ -1,5 +1,6 @@
 #include "TM1637Display.h"
 #include "ClockTime.hpp"
+#include <Arduino.h>
 
 #define DISPLAY_CLK 2
 #define DISPLAY_DIO 3
