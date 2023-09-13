@@ -6,6 +6,14 @@
 #define DISPLAY_DIO 3
 #define DISPLAY_BRIGHTNESS 2
 
+#define BTN_MINUS 4
+#define BTN_PLUS 5
+#define BTN_SET 6
+#define BTN_SHOW 7
+#define MODE_LED_RED 8
+#define MODE_LED_GREEN 9
+#define MODE_LED_BLUE 10
+
 TM1637Display display(DISPLAY_CLK, DISPLAY_DIO);
 
 void displayClockTime(ClockTime ct, bool colon)
