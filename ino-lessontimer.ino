@@ -4,7 +4,7 @@
 
 #define DISPLAY_CLK 2
 #define DISPLAY_DIO 3
-#define DISPLAY_BRIGHTNESS 7
+#define DISPLAY_BRIGHTNESS 2
 
 TM1637Display display(DISPLAY_CLK, DISPLAY_DIO);
 
