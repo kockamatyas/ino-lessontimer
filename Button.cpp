@@ -15,10 +15,3 @@ bool Button::isPressed()
 {
     return !digitalRead(this->pin);
 }
-
-void Button::awaitPress(bool release = true)
-{
-    if (release)
-        while (isPressed());
-    while (!isPressed());
-}

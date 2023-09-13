@@ -9,7 +9,6 @@ public:
     Button(uint8_t pin);
     void begin();
     bool isPressed();
-    void awaitPress(bool release = true);
 private:
     uint8_t pin;
 };
