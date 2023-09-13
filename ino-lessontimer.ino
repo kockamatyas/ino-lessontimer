@@ -30,7 +30,7 @@ void displayClockTime(ClockTime ct, bool colon)
         segments[0] = TM1637Display::encodeDigit((uint8_t)ct.secs / 10);
         segments[1] = TM1637Display::encodeDigit((uint8_t)ct.secs % 10);
         segments[2] = TM1637Display::encodeDigit((uint8_t)ct.ms / 100);
-        segments[3] = TM1637Display::encodeDigit((uint8_t)ct.ms % 100);
+        segments[3] = TM1637Display::encodeDigit((uint8_t)ct.ms / 10 % 10);
     }
     if (colon)
         segments[1] += 128;
