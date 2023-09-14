@@ -2,6 +2,7 @@
 #include "ClockTime.hpp"
 #include "Button.hpp"
 #include "RGBLed.hpp"
+#include "Timetable.hpp"
 #include <Arduino.h>
 
 #define DISPLAY_CLK 2
@@ -19,6 +20,8 @@
 #define LESSON_BREAK_COLOR 0b00000100
 #define LONG_BREAK_COLOR 0b00000010
 #define SCHEDULE_END_COLOR 0b00000001
+
+#define SELECT_SCHEDULE_LOOP_DELAY_MS 150
 
 Button BTNMinus(BTN_MINUS);
 Button BTNPlus(BTN_PLUS);
@@ -74,4 +77,24 @@ void setup()
     BTNShow.begin();
     RGBModeLed.begin();
 }
-void loop() {}
+
+void loop()
+{
+    /*
+     *  Choosing the schedule from the timetable
+     */
+    int schedule_index = 0;
+    while (!BTNSet.isPressed())
+    {
+        if (BTNMinus.isPressed())
+            schedule_index--;
+        else if (BTNPlus.isPressed())
+            schedule_index++;
+        if (schedule_index < 0)
+            schedule_index = schedules - 1;
+        else if (schedule_index >= schedules)
+            schedule_index = 0;
+        display.showNumberDec(schedule_index + 1);
+        delay(SELECT_SCHEDULE_LOOP_DELAY_MS);
+    }
+}
