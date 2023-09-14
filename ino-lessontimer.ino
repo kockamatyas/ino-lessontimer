@@ -31,8 +31,8 @@ TM1637Display display(DISPLAY_CLK, DISPLAY_DIO);
 
 enum Mode : uint8_t
 {
-    LessonBreak,
-    LongBreak,
+    LessonBreakEnd,
+    LongBreakEnd,
     ScheduleEnd
 };
 
