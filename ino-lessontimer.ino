@@ -16,6 +16,10 @@
 #define MODE_LED_GREEN (uint8_t)9
 #define MODE_LED_BLUE (uint8_t)10
 
+#define LESSON_BREAK_COLOR 0b00000100
+#define LONG_BREAK_COLOR 0b00000010
+#define SCHEDULE_END_COLOR 0b00000001
+
 Button BTNMinus(BTN_MINUS);
 Button BTNPlus(BTN_PLUS);
 Button BTNSet(BTN_SET);
@@ -24,6 +28,13 @@ Button BTNShow(BTN_SHOW);
 RGBLed RGBModeLed(MODE_LED_RED, MODE_LED_GREEN, MODE_LED_BLUE);
 
 TM1637Display display(DISPLAY_CLK, DISPLAY_DIO);
+
+enum Mode : uint8_t
+{
+    LessonBreak,
+    LongBreak,
+    ScheduleEnd
+};
 
 void displayClockTime(ClockTime ct, bool colon)
 {
