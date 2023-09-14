@@ -57,5 +57,10 @@ void displayClockTime(ClockTime ct, bool colon)
 void setup()
 {
     display.setBrightness(DISPLAY_BRIGHTNESS);
+    BTNMinus.begin();
+    BTNPlus.begin();
+    BTNSet.begin();
+    BTNShow.begin();
+    RGBModeLed.begin();
 }
 void loop() {}
