@@ -1,5 +1,7 @@
 #include "TM1637Display.h"
 #include "ClockTime.hpp"
+#include "Button.hpp"
+#include "RGBLed.hpp"
 #include <Arduino.h>
 
 #define DISPLAY_CLK 2
@@ -10,9 +12,16 @@
 #define BTN_PLUS 5
 #define BTN_SET 6
 #define BTN_SHOW 7
-#define MODE_LED_RED 8
-#define MODE_LED_GREEN 9
-#define MODE_LED_BLUE 10
+#define MODE_LED_RED (uint8_t)8
+#define MODE_LED_GREEN (uint8_t)9
+#define MODE_LED_BLUE (uint8_t)10
+
+Button BTNMinus(BTN_MINUS);
+Button BTNPlus(BTN_PLUS);
+Button BTNSet(BTN_SET);
+Button BTNShow(BTN_SHOW);
+
+RGBLed RGBModeLed(MODE_LED_RED, MODE_LED_GREEN, MODE_LED_BLUE);
 
 TM1637Display display(DISPLAY_CLK, DISPLAY_DIO);
 
