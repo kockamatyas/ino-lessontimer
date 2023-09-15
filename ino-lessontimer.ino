@@ -3,6 +3,7 @@
 #include "Button.hpp"
 #include "RGBLed.hpp"
 #include "Timetable.hpp"
+#include "ScheduleSegment.hpp"
 #include <Arduino.h>
 
 #define DISPLAY_CLK 2
@@ -68,7 +69,6 @@ void displayClockTime(ClockTime ct, bool colon)
 
 void setup()
 {
-    display.setBrightness(DISPLAY_BRIGHTNESS);
     BTNMinus.begin();
     BTNPlus.begin();
     BTNSet.begin();
@@ -81,18 +81,123 @@ void loop()
     /*
      *  Choosing the schedule from the timetable
      */
+    display.setBrightness(DISPLAY_BRIGHTNESS, true);
     int schedule_index = 0;
     while (!BTNSet.isPressed())
     {
         if (BTNMinus.isPressed())
+        {
             schedule_index--;
+            while (BTNMinus.isPressed());
+        }
         else if (BTNPlus.isPressed())
+        {
             schedule_index++;
+            while (BTNPlus.isPressed());
+        }
         if (schedule_index < 0)
             schedule_index = schedules - 1;
         else if (schedule_index >= schedules)
             schedule_index = 0;
         display.showNumberDec(schedule_index + 1);
-        while (BTNMinus.isPressed() || BTNPlus.isPressed());
+    }
+    displayClockTime(msToClockTime(0), false);
+    while (BTNSet.isPressed());
+    while (!BTNSet.isPressed());
+    while (BTNSet.isPressed());
+    /*
+     *  Looping through segments in the selected schedule
+     */
+    Mode mode = LessonBreakEnd;
+    bool display_on = true;
+    uint8_t rgb_byte = LESSON_BREAK_COLOR;
+    RGBModeLed.set(rgb_byte);
+    display.setBrightness(DISPLAY_BRIGHTNESS, display_on);
+    for (int i = 0; i < segments; i++)
+    {
+        if (timetable[schedule_index][i].type == None)
+            continue;
+        unsigned long scheduleEnd_ms = 0;
+        unsigned long nextLongBreak_ms = 0;
+        bool isLongBreakQueued = false;
+        for (int j = i; j < segments; j++)
+        {
+            if (timetable[schedule_index][j].type == None)
+                break;
+            scheduleEnd_ms += timetable[schedule_index][j].duration_ms;
+            if (!isLongBreakQueued)
+            {
+                if (timetable[schedule_index][j].type == LongBreak)
+                {
+                    isLongBreakQueued = true;
+                }
+                else
+                {
+                    nextLongBreak_ms += timetable[schedule_index][j].duration_ms;
+                }
+            }
+        }
+        const unsigned long startTime = millis();
+        for (;;)
+        {
+            unsigned long currentTime = millis() - startTime;
+            if (currentTime > timetable[schedule_index][i].duration_ms)
+                break;
+            switch (mode)
+            {
+            case LessonBreakEnd:
+                if (timetable[schedule_index][i].type == LessonBreak)
+                    displayClockTime(msToClockTime(timetable[schedule_index][i].duration_ms - currentTime), true);
+                else
+                    display.clear();
+                break;
+            case LongBreakEnd:
+                if (timetable[schedule_index][i].type == LongBreak)
+                    displayClockTime(msToClockTime(timetable[schedule_index][i].duration_ms - currentTime), true);
+                else if (isLongBreakQueued)
+                    displayClockTime(msToClockTime(nextLongBreak_ms - currentTime), true);
+                else
+                    display.clear();
+                break;
+            case ScheduleEnd:
+                displayClockTime(msToClockTime(scheduleEnd_ms - currentTime), true);
+                break;
+            }
+            if (BTNMinus.isPressed() && BTNPlus.isPressed())
+            {
+                display.clear();
+                RGBModeLed.set(0b00000000);
+                return;
+            }
+            if (BTNSet.isPressed())
+            {
+                switch (mode)
+                {
+                case LessonBreakEnd:
+                    mode = LongBreakEnd;
+                    RGBModeLed.set(LONG_BREAK_COLOR);
+                    break;
+                case LongBreakEnd:
+                    mode = ScheduleEnd;
+                    RGBModeLed.set(SCHEDULE_END_COLOR);
+                    break;
+                case ScheduleEnd:
+                    mode = LessonBreakEnd;
+                    RGBModeLed.set(LESSON_BREAK_COLOR);
+                    break;
+                }
+                while (BTNSet.isPressed());
+            }
+            else if (BTNShow.isPressed())
+            {
+                display_on = !display_on;
+                display.setBrightness(DISPLAY_BRIGHTNESS, display_on);
+                if (display_on)
+                    RGBModeLed.set(rgb_byte);
+                else
+                    RGBModeLed.set(0b00000000);
+                while (BTNShow.isPressed());
+            }
+        }
     }
 }
