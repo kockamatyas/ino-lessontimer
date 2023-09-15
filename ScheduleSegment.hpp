@@ -3,8 +3,7 @@
 
 enum ScheduleSegmentType : unsigned char
 {
-    Lesson,
-    Break,
+    LessonBreak,
     LongBreak,
     None
 };
