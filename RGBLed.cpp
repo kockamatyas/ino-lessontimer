@@ -17,15 +17,15 @@ void RGBLed::begin()
 
 void RGBLed::set(uint8_t rgb)
 {
-    if (rgb & (1 << 3))
+    if (rgb & 0b00000100)
         digitalWrite(this->red, HIGH);
     else
         digitalWrite(this->red, LOW);
-    if (rgb & (1 << 2))
+    if (rgb & 0b00000010)
         digitalWrite(this->green, HIGH);
     else
         digitalWrite(this->green, LOW);
-    if (rgb & (1 << 1))
+    if (rgb & 0b00000001)
         digitalWrite(this->blue, HIGH);
     else
         digitalWrite(this->blue, LOW);

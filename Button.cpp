@@ -13,5 +13,5 @@ void Button::begin()
 
 bool Button::isPressed()
 {
-    return !digitalRead(this->pin);
+    return digitalRead(this->pin) == LOW;
 }
