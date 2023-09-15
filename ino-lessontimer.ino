@@ -21,8 +21,6 @@
 #define LONG_BREAK_COLOR 0b00000010
 #define SCHEDULE_END_COLOR 0b00000001
 
-#define SELECT_SCHEDULE_LOOP_DELAY_MS 150
-
 Button BTNMinus(BTN_MINUS);
 Button BTNPlus(BTN_PLUS);
 Button BTNSet(BTN_SET);
@@ -95,6 +93,6 @@ void loop()
         else if (schedule_index >= schedules)
             schedule_index = 0;
         display.showNumberDec(schedule_index + 1);
-        delay(SELECT_SCHEDULE_LOOP_DELAY_MS);
+        while (BTNMinus.isPressed() || BTNPlus.isPressed());
     }
 }
