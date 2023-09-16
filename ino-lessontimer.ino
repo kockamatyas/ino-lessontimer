@@ -4,23 +4,8 @@
 #include "RGBLed.hpp"
 #include "Timetable.hpp"
 #include "ScheduleSegment.hpp"
+#include "Config.hpp"
 #include <Arduino.h>
-
-#define DISPLAY_CLK 2
-#define DISPLAY_DIO 3
-#define DISPLAY_BRIGHTNESS 2
-
-#define BTN_MINUS 4
-#define BTN_PLUS 5
-#define BTN_SET 6
-#define BTN_SHOW 7
-#define MODE_LED_RED (uint8_t)8
-#define MODE_LED_GREEN (uint8_t)9
-#define MODE_LED_BLUE (uint8_t)10
-
-#define LESSON_BREAK_COLOR 0b00000100
-#define LONG_BREAK_COLOR 0b00000001
-#define SCHEDULE_END_COLOR 0b00000010
 
 Button BTNMinus(BTN_MINUS);
 Button BTNPlus(BTN_PLUS);
@@ -110,7 +95,7 @@ void loop()
      */
     Mode mode = LessonBreakEnd;
     bool display_on = true;
-    uint8_t rgb_byte = LESSON_BREAK_COLOR;
+    uint8_t rgb_byte = LESSON_BREAK_END_COLOR;
     RGBModeLed.set(rgb_byte);
     display.setBrightness(DISPLAY_BRIGHTNESS, display_on);
     for (int i = 0; i < segments; i++)
@@ -175,7 +160,7 @@ void loop()
                 {
                 case LessonBreakEnd:
                     mode = LongBreakEnd;
-                    RGBModeLed.set(LONG_BREAK_COLOR);
+                    RGBModeLed.set(LONG_BREAK_END_COLOR);
                     break;
                 case LongBreakEnd:
                     mode = ScheduleEnd;
@@ -183,7 +168,7 @@ void loop()
                     break;
                 case ScheduleEnd:
                     mode = LessonBreakEnd;
-                    RGBModeLed.set(LESSON_BREAK_COLOR);
+                    RGBModeLed.set(LESSON_BREAK_END_COLOR);
                     break;
                 }
                 while (BTNSet.isPressed());
