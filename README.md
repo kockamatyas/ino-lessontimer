@@ -2,6 +2,22 @@
 
 Arduino program that counts down school lesson time
 
+## Assembly
+
+The following is required in order to assemble the device:
+
+- Arduino Nano
+- TM1637 display
+- 4 buttons (**MINUS**, **PLUS**, **SET** and **SHOW**)
+- An RGB led (+resistors, if required)
+
+Pin the components to the arduino as descibed in `Config.hpp`.  
+If you want to change the pin bindings in `Config.hpp`, feel free to.
+
+## Timetable
+
+Follow the instructions in `sampleTimetable.hpp` to make your custom `Timetable.hpp` file.
+
 ## Usage
 
 Lessontimer has two phases.
