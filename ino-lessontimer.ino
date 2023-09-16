@@ -148,27 +148,30 @@ void loop()
                 displayClockTime(msToClockTime(scheduleEnd_ms - currentTime), true);
                 break;
             }
-            if (BTNMinus.isPressed() && BTNPlus.isPressed())
+            if (BTNMinus.isPressed() && BTNPlus.isPressed() && display_on)
             {
                 display.clear();
                 RGBModeLed.set(0b00000000);
                 return;
             }
-            if (BTNSet.isPressed())
+            if (BTNSet.isPressed() && display_on)
             {
                 switch (mode)
                 {
                 case LessonBreakEnd:
                     mode = LongBreakEnd;
-                    RGBModeLed.set(LONG_BREAK_END_COLOR);
+                    rgb_byte = LONG_BREAK_END_COLOR;
+                    RGBModeLed.set(rgb_byte);
                     break;
                 case LongBreakEnd:
                     mode = ScheduleEnd;
-                    RGBModeLed.set(SCHEDULE_END_COLOR);
+                    rgb_byte = SCHEDULE_END_COLOR;
+                    RGBModeLed.set(rgb_byte);
                     break;
                 case ScheduleEnd:
                     mode = LessonBreakEnd;
-                    RGBModeLed.set(LESSON_BREAK_END_COLOR);
+                    rgb_byte = LESSON_BREAK_END_COLOR;
+                    RGBModeLed.set(rgb_byte);
                     break;
                 }
                 while (BTNSet.isPressed());
