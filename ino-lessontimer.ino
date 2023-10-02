@@ -178,13 +178,13 @@ void loop()
             }
             else if (BTNShow.isPressed())
             {
+                while (BTNShow.isPressed());
                 display_on = !display_on;
                 display.setBrightness(DISPLAY_BRIGHTNESS, display_on);
                 if (display_on)
                     RGBModeLed.set(rgb_byte);
                 else
                     RGBModeLed.set(0b00000000);
-                while (BTNShow.isPressed());
             }
         }
     }
