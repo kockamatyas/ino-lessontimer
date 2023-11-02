@@ -1,0 +1,16 @@
+# Ignore everything except
+
+*
+
+# Gitignore
+!.gitignore
+
+# Project files
+!*.kicad_pro
+
+# Schematic files
+!*.kicad_sch
+
+# PCB files
+!*.kicad_pcb
+
