@@ -5,12 +5,12 @@
 # Gitignore
 !.gitignore
 
-# Project files
-!*.kicad_pro
+# Project file
+!ino-lessontimer.kicad_pro
 
-# Schematic files
-!*.kicad_sch
+# Schematic file
+!ino-lessontimer.kicad_sch
 
-# PCB files
-!*.kicad_pcb
+# PCB file
+!ino-lessontimer.kicad_pcb
 
