@@ -16,3 +16,6 @@
 
 # Symbol library table
 !sym-lib-table
+
+# Footprint library table
+!fp-lib-table
