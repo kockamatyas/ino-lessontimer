@@ -1,0 +1,21 @@
+# Ignore everything except
+
+*
+
+# Gitignore
+!.gitignore
+
+# Project file
+!ino-lessontimer.kicad_pro
+
+# Schematic file
+!ino-lessontimer.kicad_sch
+
+# PCB file
+!ino-lessontimer.kicad_pcb
+
+# Symbol library table
+!sym-lib-table
+
+# Footprint library table
+!fp-lib-table
