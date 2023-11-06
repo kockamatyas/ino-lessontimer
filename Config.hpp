@@ -9,8 +9,8 @@
 
 // Buttons config
 
-#define BTN_MINUS 4
-#define BTN_PLUS 5
+#define BTN_MINUS 5
+#define BTN_PLUS 4
 #define BTN_SET 6
 #define BTN_SHOW 7
 
