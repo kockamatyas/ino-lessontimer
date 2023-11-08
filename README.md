@@ -11,8 +11,9 @@ The following is required in order to assemble the device:
 - 4 buttons (**MINUS**, **PLUS**, **SET** and **SHOW**)
 - An RGB led (+resistors, if required)
 
-Pin the components to the arduino as descibed in `Config.hpp`.  
-If you want to change the pin bindings in `Config.hpp`, feel free to.
+Assemble the component as described in the schematic file `kicad/ino-lessontimer/ino-lessontimer.kicad_sch`.
+You can also use the PCB file (`kicad/ino-lessontimer/ino-lessontimer.kicad_pcb`) to make a circuit board.
+If you want to change the pin bindings in the schematic or in the PCB, don't forget to do so in `Config.hpp`.
 
 ## Timetable
 
